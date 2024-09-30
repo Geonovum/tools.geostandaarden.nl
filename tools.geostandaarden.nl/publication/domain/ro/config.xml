@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <item id="ro" organisation="geonovum" type="domain">
+    <nl_organisationStylesURL>https://tools.geostandaarden.nl/publication/domain/ro/</nl_organisationStylesURL>
+    <latestVersion class="code">["nl_organisationPublishURL", "pubDomain", "/", "shortName"]</latestVersion>
+    <thisVersion class="code">["nl_organisationPublishURL", "pubDomain", "/", "shortName", "/", "publishDate"]</thisVersion>
+    <prevVersion class="code">["nl_organisationPublishURL", "pubDomain", "/", "shortName", "/", "previousPublishDate"]</prevVersion>
+    <logos>
+      <item>
+        <src>https://tools.geostandaarden.nl/publication/domain/ro/Geonovum.svg</src>
+        <alt>Geonovum</alt>
+        <id>geonovum</id>
+        <height>67</height>
+        <width>132</width>
+        <url>https://www.geonovum.nl/geo-standaarden</url>
+        <!-- ico-versie t.b.v. browser-tab -->
+        <ico>https://tools.geostandaarden.nl/publication/domain/ro/Geonovum.ico</ico>
+      </item>
+    </logos>
+    <useLogo class="code">true</useLogo>
+    <useLabel class="code">true</useLabel>
+    <addSectionLinks class="code">false</addSectionLinks>
+    <sotdText>
+      <en>
+        <sotd>Status of This Document</sotd>
+        <geen>None</geen>
+        <basis>This document has no official standing.</basis>
+        <ld>This is a living document, which is updated regularly.</ld>
+        <cv>This is a proposed recommendation approved by TO. Comments regarding this document may be sent to [address].</cv>
+        <def>This is the definitive version of this document. Edits resulting from consultations have been applied.</def>
+        <vv>This is the definitive concept of this document. Edits resulting from consultations have been applied.</vv>
+        <wv>This is a draft that could be altered, removed or replaced by other documents. It is not a recommendation approved by TO.</wv>
+      </en>
+      <nl>
+        <sotd>Status van dit document</sotd>
+        <geen>Geen</geen>
+        <basis>Dit is een document zonder officiële status.</basis>
+        <ld>Dit is een levend document dat regelmatig gewijzigd wordt.</ld>
+        <cv>Dit is een door het TO goedgekeurde consultatieversie. Commentaar over dit document kan gestuurd worden naar [adres].</cv>
+        <def>Dit is de definitieve versie van dit document. Wijzigingen naar aanleiding van consultaties zijn doorgevoerd.</def>
+        <vv>Dit is een definitief concept van de nieuwe versie van dit document. Wijzigingen naar aanleiding van consultaties zijn doorgevoerd.</vv>
+        <wv>Dit is een werkversie die op elk moment kan worden gewijzigd, verwijderd of vervangen door andere documenten. Het is geen door het TO goedgekeurde consultatieversie.</wv>
+      </nl>
+    </sotdText>
+  </item>
+</config>
