@@ -125,6 +125,14 @@ var organisationConfig = {
             title: "Semantic Versioning 2.0.0",
             authors: ["T. Preston-Werner"],
             date: "June 2013"
-        },
+        },    
+        "MIM12": {
+            id: "MIM12",
+            title: "MIM - Metamodel Informatie Modellering (Versie 1.2)",
+            href: "https://docs.geostandaarden.nl/mim/def-st-mim-20240613/",
+            status: "Definitief",
+            publisher: "Geonovum",
+            date: "2024-06-13"
+          }
     },
 }
