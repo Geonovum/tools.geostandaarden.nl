@@ -1,0 +1,39 @@
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Eclipse
+.metadata
+*.tmp
+*.bak
+*.swp
+*~.nib
+.localhistory
+.classpath
+.project
+.settings/
+.target/
+
+# VS Code
+.vscode/
+
+# STS
+.springBeans
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
