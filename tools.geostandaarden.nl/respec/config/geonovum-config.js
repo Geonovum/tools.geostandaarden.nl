@@ -1173,5 +1173,5 @@ var organisationConfig = {
     "date": "2008-03-14",
     "id": "WMCC11"
   }
-    },
+    }
 }
