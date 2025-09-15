@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Geonovum Referenties</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    input, select { padding: 8px; font-size: 16px; margin-right: 10px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; vertical-align: top; }
+    th { cursor: pointer; background-color: #f4f4f4; }
+    th:hover { background-color: #e4e4e4; }
+    .authors, .editors, .publisher { color: #666; font-size: 14px; }
+    .pagination { margin-top: 20px; }
+    .pagination button { padding: 5px 10px; margin-right: 5px; }
+    .deprecated { color: #999; }
+    .copy-button, .json-button, .json-close { font-size: 16px; background: none; border: none; cursor: pointer; margin-right: 5px; }
+    .ref-tag { font-family: monospace; }
+    .copy-feedback { color: green; font-size: 12px; margin-left: 10px; }
+    .json-dialog { width: 80%; max-width: 600px; padding: 20px; border: none; border-radius: 8px; box-shadow: 0 0 10px #aaa; background: #fff; }
+    .json-close { float: right; font-size: 18px; }
+    pre { white-space: pre-wrap; word-break: break-word; }
+  </style>
+</head>
+<body>
+  <h1>Geonovum Referenties</h1>
+  <input type="text" id="searchBox" placeholder="Zoek op naam, titel of auteur..." />
+  <label for="itemsPerPage">Aantal per pagina:</label>
+  <select id="itemsPerPage">
+    <option value="10" selected>10</option>
+    <option value="25">25</option>
+    <option value="50">50</option>
+  </select>
+  <label style="margin-left: 20px;">
+    <input type="checkbox" id="showDeprecated" />
+    Laat ook oude versies zien
+  </label>
+
+  <table>
+    <thead>
+      <tr>
+        <th data-sort="key">Referentiecode ▲▼</th>
+        <th data-sort="info">Beschrijving ▲▼</th>
+      </tr>
+    </thead>
+    <tbody id="resultBody"></tbody>
+  </table>
+  <div class="pagination" id="pagination"></div>
+
+  <dialog id="jsonDialog" class="json-dialog">
+    <button class="json-close" onclick="closeJsonDialog()">✖️</button>
+    <pre id="jsonContent"></pre>
+  </dialog>
+
+  <script>
+    window.respecMermaid = { createFigures: function () {} };
+  </script>
+  <script src="https://tools.geostandaarden.nl/respec/config/geonovum-config.js"></script>
+  <script>
+    const localBiblio = organisationConfig.localBiblio;
+    let allEntries = Object.entries(localBiblio);
+    let filteredEntries = [...allEntries];
+    let currentPage = 1;
+    let itemsPerPage = 10;
+    let currentSort = { key: 'key', direction: 'asc' };
+
+    const searchBox = document.getElementById("searchBox");
+    const resultBody = document.getElementById("resultBody");
+    const paginationDiv = document.getElementById("pagination");
+    const itemsPerPageSelect = document.getElementById("itemsPerPage");
+    const headers = document.querySelectorAll("th");
+    const showDeprecatedCheckbox = document.getElementById("showDeprecated");
+
+    function sortEntries(entries, sortKey, direction) {
+      return entries.sort(([aKey, aVal], [bKey, bVal]) => {
+        const valA = sortKey === 'key' ? aKey.toLowerCase() : aVal.title?.toLowerCase() || '';
+        const valB = sortKey === 'key' ? bKey.toLowerCase() : bVal.title?.toLowerCase() || '';
+        return direction === 'asc' ? valA.localeCompare(valB) : valB.localeCompare(valA);
+      });
+    }
+
+    function renderTable() {
+      resultBody.innerHTML = "";
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const pageEntries = filteredEntries.slice(startIndex, startIndex + itemsPerPage);
+
+      for (const [key, val] of pageEntries) {
+        const row = document.createElement("tr");
+        const keyCell = document.createElement("td");
+        const infoCell = document.createElement("td");
+
+        keyCell.innerHTML = `
+          <button class="copy-button" onclick="copyToClipboard('[${key}]', this)" title="Kopieer tag">📋</button>
+          <button class="json-button" onclick='openJsonDialog("${key}", localBiblio["${key}"])' title="Bekijk JSON">🧾</button>
+          <span class="ref-tag">[${key}]</span>
+          <span class="copy-feedback" style="display:none;">Gekopieerd!</span>
+        `;
+
+        infoCell.innerHTML = `
+  <a href="${val.href}" target="_blank" class="${val.deprecated ? 'deprecated' : ''}">
+    <strong>${val.title}</strong>
+  </a>
+  ${Array.isArray(val.authors) && val.authors.length > 0 ? `<br /><span class="authors">Auteurs: ${val.authors.join(", ")}` : '</span>'}
+  ${Array.isArray(val.editors) && val.editors.length > 0 ? `<br /><span class="editors">Editors: ${val.editors.join(", ")}` : '</span>'}
+  ${val.publisher ? `<br /><span class="publisher">Gepubliceerd door: ${val.publisher}` : '</span>'}
+  ${val.date ? `<br/><span>Datum: ${val.date}</span>` : ''}
+`;
+
+        row.appendChild(keyCell);
+        row.appendChild(infoCell);
+        resultBody.appendChild(row);
+      }
+
+      renderPagination();
+    }
+
+    function renderPagination() {
+      const totalPages = Math.ceil(filteredEntries.length / itemsPerPage);
+      paginationDiv.innerHTML = "";
+
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        btn.disabled = (i === currentPage);
+        btn.onclick = () => {
+          currentPage = i;
+          renderTable();
+        };
+        paginationDiv.appendChild(btn);
+      }
+    }
+
+    function updateSearch() {
+      const input = searchBox.value.toLowerCase();
+      const showDeprecated = showDeprecatedCheckbox.checked;
+
+      filteredEntries = allEntries.filter(([key, val]) => {
+        if (!showDeprecated && val.deprecated) return false;
+        const inKey = key.toLowerCase().includes(input);
+        const inTitle = val.title?.toLowerCase().includes(input);
+        const inAuthors = (val.authors || []).some(a => a.toLowerCase().includes(input));
+        return inKey || inTitle || inAuthors;
+      });
+
+      filteredEntries = sortEntries(filteredEntries, currentSort.key, currentSort.direction);
+      currentPage = 1;
+      renderTable();
+    }
+
+    headers.forEach(header => {
+      header.addEventListener("click", () => {
+        const sortKey = header.getAttribute("data-sort");
+        if (currentSort.key === sortKey) {
+          currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+        } else {
+          currentSort.key = sortKey;
+          currentSort.direction = 'asc';
+        }
+        filteredEntries = sortEntries(filteredEntries, currentSort.key, currentSort.direction);
+        renderTable();
+      });
+    });
+
+    searchBox.addEventListener("input", updateSearch);
+    showDeprecatedCheckbox.addEventListener("change", updateSearch);
+    itemsPerPageSelect.addEventListener("change", () => {
+      itemsPerPage = parseInt(itemsPerPageSelect.value);
+      currentPage = 1;
+      renderTable();
+    });
+
+    function copyToClipboard(text, button) {
+      navigator.clipboard.writeText('['+text+']').then(() => {
+        const feedback = button.parentElement.querySelector(".copy-feedback");
+        feedback.style.display = "inline";
+        setTimeout(() => {
+          feedback.style.display = "none";
+        }, 1500);
+      });
+    }
+
+    function openJsonDialog(key, entry) {
+      const jsonDialog = document.getElementById("jsonDialog");
+      const jsonContent = document.getElementById("jsonContent");
+      jsonContent.textContent = JSON.stringify({ [key]: entry }, null, 2);
+      jsonDialog.showModal();
+    }
+
+    function closeJsonDialog() {
+      document.getElementById("jsonDialog").close();
+    }
+
+    updateSearch();
+  </script>
+</body>
+</html>
