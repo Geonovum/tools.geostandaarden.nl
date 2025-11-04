@@ -11,9 +11,6 @@ jobs:
   deploy:
     name: Deploy `/tools` via SCP
     runs-on: ubuntu-22.04
-
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop'
-
     env:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
       SSH_HOST:        ${{ secrets.SSH_HOST }}
