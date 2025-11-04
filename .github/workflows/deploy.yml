@@ -1,13 +1,9 @@
 name: Deploy Static Docs
 
 on:
-  pull_request:
-    branches:
-      - main
-    types:
-      - closed
   push:
     branches:
+      - main
       - develop
   workflow_dispatch:
 
