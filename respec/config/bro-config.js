@@ -9,8 +9,8 @@ var organisationConfig = {
     nl_organisationPublishURL: "https://docs.geostandaarden.nl/",
     logos: [{
     src: "https://tools.geostandaarden.nl/respec/media/BRO/logo_vro.png",
-    alt: "Ministerie BZK",
-    id: "logo_minbzk",
+    alt: "Rijksoverheid",
+    id: "logo_vro",
     width: 776,
     height: 163,
     url: "https://www.geobasisregistraties.nl/basisregistraties/ondergrond",
