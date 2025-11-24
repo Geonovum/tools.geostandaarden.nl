@@ -8,7 +8,7 @@ var organisationConfig = {
     // nl_organisationStylesURL: "https://tools.geostandaarden.nl/respec/bro/style/",
     nl_organisationPublishURL: "https://docs.geostandaarden.nl/",
     logos: [{
-    src: "https://broprogramma.github.io/generiek/logo_vro.png",
+    src: "https://tools.geostandaarden.nl/respec/media/BRO/logo_vro.png",
     alt: "Ministerie BZK",
     id: "logo_minbzk",
     width: 776,
