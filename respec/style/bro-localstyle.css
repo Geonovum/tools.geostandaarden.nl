@@ -48,9 +48,8 @@ th, td {
   float: none !important;
   display: block !important;
   margin-left: auto !important;
-  margin-right: auto !important; 
   border-bottom: 0px !important;
-  width: 100% !important;
+  width: 50% !important;
 }
 
 /******************************************************************************/
