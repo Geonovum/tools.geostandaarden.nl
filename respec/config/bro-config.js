@@ -8,9 +8,9 @@ var organisationConfig = {
     // nl_organisationStylesURL: "https://tools.geostandaarden.nl/respec/bro/style/",
     nl_organisationPublishURL: "https://docs.geostandaarden.nl/",
     logos: [{
-    src: "https://tools.geostandaarden.nl/respec/media/BRO/logo_vro.png",
-    alt: "Rijksoverheid",
-    id: "logo_vro",
+    src: "https://tools.geostandaarden.nl/respec/media/BRO/logo_vro_blauw.png",
+    alt: "Ministerie van Volkshuisvesting en Ruimtelijke Ordering",
+    id: "logo_vro_blauw",
     width: 776,
     height: 163,
     url: "https://www.geobasisregistraties.nl/basisregistraties/ondergrond",
