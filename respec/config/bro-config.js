@@ -122,7 +122,7 @@ var organisationConfig = {
             def: `Dit is de definitieve versie van dit document. Wijzigingen naar aanleiding van consultaties zijn doorgevoerd.`,
             wv: `Dit is een werkversie die op elk moment kan worden gewijzigd, verwijderd of vervangen door andere documenten. Het is geen stabiel document.`,
             cv: `Dit is een consultatieversie. Commentaar over dit document kan gestuurd worden naar `,
-            vv: `Dit is de definitieve conceptversie van dit document. Wijzigingen naar aanleiding van consultaties zijn doorgevoerd.`,
+            vv: `Dit is de definitieve conceptversie van dit document. Wijzigingen naar aanleiding van consultaties zijn doorgevoerd. <p><b>Let op:</b> De aanlever-, gebruiks- en terugmeldplicht als bedoeld in artikelen 9, 27 en 30 van de <a href=\"https://wetten.overheid.nl/BWBR0037095\">Wet basisregistratie ondergrond (Bro)</a> gelden als deze catalogus is opgenomen in de <a href=\"https://wetten.overheid.nl/BWBR0040482\">Regeling Bro</a>.</p>`,
             basis: "Dit is een document zonder officiële status.",
         },
         en: {
