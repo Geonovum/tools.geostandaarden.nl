@@ -923,6 +923,15 @@ var organisationConfig = {
       date: "2020-06-30",
       id: "NLISO19119",
     },
+    "NL-SBB-20241010": {
+      title:
+        "NNL-SBB - Standaard voor het beschrijven van begrippen",
+      href: "https://docs.geostandaarden.nl/nl-sbb/def-st-nl-sbb-20241010/",
+      status: "Vastgestelde versie",
+      publisher: "Geonovum",
+      date: "2024-10-10",
+      id: "NL-SBB-20241010"
+    },
     NLWFS: {
       title:
         "Nederlands profiel op ISO 19142 Geographic information — Web Feature Service, Versie 1.1",
