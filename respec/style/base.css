@@ -943,42 +943,33 @@ td {
 /* wilkoquak: Deze styles zijn toegevoegd omdat Imvertor nieuwe label aan een catalogus toevoegt */
 
 table.overview, table.list {
-  border-bottom: 2px solid #005a9c;
-  border-top: 2px solid #005a9c;
+  border-spacing: 0;
   border-collapse: collapse;
-  margin-bottom: 1.2em;
-  margin-top: 1.2em;
-  table-layout: auto;
-  width: 100%;
-}
-table.overview, table.list caption {
-  text-align: left;
-  font-weight: bold;
-  line-height: 1.2em;
-  margin-bottom: 0.3em;
-}
-table.overview, table.list tr:nth-child(even) {
-  background: #f0f6ff;
-}
+  border-bottom: 3px solid #005a9c
+  }
 table.overview, table.list th {
-  background-color: #005a9c;
-  border-bottom: 1px solid #005a9c;
-  border-top: 1px solid #005a9c;
-  color: white;
-  height: 16pt;
-  padding: 3.5px 1.5mm 3.5px 1.5mm;
-  vertical-align: top;
-  word-wrap: break-word;
-}
+  background: #b4dbf6;
+  color: #000;
+  padding: 3px 5px;
+  text-align: left
+  }
+table.overview, table.list th a {
+  color: #000;
+  padding: 3px 5px;
+  text-align: left
+  }
+table.overview, table.list th[scope=row] {
+  background: inherit;
+  color: inherit;
+  border-top: 1px solid #ddd
+  }
 table.overview, table.list td {
-  border-bottom: 1px solid #005a9c;
-  border-top: 1px solid #005a9c;
-  height: 16pt;
-  padding: 3.5px 1.5mm 3.5px 1.5mm;
-  vertical-align: top;
-  word-wrap: break-word;
-}
-
+  padding: 3px 10px;
+  border-top: 1px solid #ddd
+  }
+table.overview, table.list tr:nth-child(even) {
+  background:#f0f6ff
+  }
 
 
 /* wilkoquak: stijldefinities voor generieke tabellen */
