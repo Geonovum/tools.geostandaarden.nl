@@ -979,6 +979,47 @@ table.overview, table.list td {
   word-wrap: break-word;
 }
 
+
+
+/* wilkoquak: stijldefinities voor generieke tabellen */
+
+table {
+  border-bottom: 2px solid #005a9c;
+  border-top: 2px solid #005a9c;
+  border-collapse: collapse;
+  margin-bottom: 1.2em;
+  margin-top: 1.2em;
+  table-layout: auto;
+  width: 100%;
+}
+table caption {
+  text-align: left;
+  font-weight: bold;
+  line-height: 1.2em;
+  margin-bottom: 0.3em;
+}
+table tr:nth-child(even) {
+  background: #f0f6ff;
+}
+table th {
+  background-color: #005a9c;
+  border-bottom: 1px solid #005a9c;
+  border-top: 1px solid #005a9c;
+  color: white;
+  height: 16pt;
+  padding: 3.5px 1.5mm 3.5px 1.5mm;
+  vertical-align: top;
+  word-wrap: break-word;
+}
+table td {
+  border-bottom: 1px solid #005a9c;
+  border-top: 1px solid #005a9c;
+  height: 16pt;
+  padding: 3.5px 1.5mm 3.5px 1.5mm;
+  vertical-align: top;
+  word-wrap: break-word;
+}
+
 /* [GW20240821: bestaande stijldefinities] */
 
 table.def {
