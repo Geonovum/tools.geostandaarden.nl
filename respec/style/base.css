@@ -940,46 +940,7 @@ td {
 
 /** Property/Descriptor Definition Tables *************************************/
 
-/* [GW20240821: stijldefinities voor generieke tabellen, voor alle zekerheid zonder class-aanduiding] */
-
-table:not([class]) {
-  border-bottom: 2px solid #005a9c;
-  border-top: 2px solid #005a9c;
-  border-collapse: collapse;
-  margin-bottom: 1.2em;
-  margin-top: 1.2em;
-  table-layout: fixed;
-  width: 100%;
-}
-table:not([class]) caption {
-  text-align: left;
-  font-weight: bold;
-  line-height: 1.2em;
-  margin-bottom: 0.3em;
-}
-table:not([class]) tr:nth-child(even) {
-  background: #f0f6ff;
-}
-table:not([class]) th {
-  background-color: #005a9c;
-  border-bottom: 1px solid #005a9c;
-  border-top: 1px solid #005a9c;
-  color: white;
-  height: 16pt;
-  padding: 3.5px 1.5mm 3.5px 1.5mm;
-  vertical-align: top;
-  word-wrap: break-word;
-}
-table:not([class]) td {
-  border-bottom: 1px solid #005a9c;
-  border-top: 1px solid #005a9c;
-  height: 16pt;
-  padding: 3.5px 1.5mm 3.5px 1.5mm;
-  vertical-align: top;
-  word-wrap: break-word;
-}
-
-/* [wilkoquak: Deze styles zijn toegevoegd omdat Imvertor nieuwe label aan een catalogus toevoegt */
+/* wilkoquak: Deze styles zijn toegevoegd omdat Imvertor nieuwe label aan een catalogus toevoegt */
 
 table.overview, table.list {
   border-bottom: 2px solid #005a9c;
@@ -987,7 +948,7 @@ table.overview, table.list {
   border-collapse: collapse;
   margin-bottom: 1.2em;
   margin-top: 1.2em;
-  table-layout: fixed;
+  table-layout: auto;
   width: 100%;
 }
 table.overview, table.list caption {
@@ -1018,7 +979,7 @@ table.overview, table.list td {
   word-wrap: break-word;
 }
 
-/* [GW20240821: bestaande stijldefinities] *//
+/* [GW20240821: bestaande stijldefinities] */
 
 table.def {
   /* inherits .def box styling, see above */
