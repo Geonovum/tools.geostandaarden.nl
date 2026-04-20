@@ -1,4 +1,59 @@
 // Dit bestand is afgeleid van het geonovum-config bestand, gepubliceerd als https://tools.geostandaarden.nl/respec/config/geonovum-config.js, voor hergebruik in BRO ReSpec documenten.
+function addBroSotdNotice() {
+    try {
+        var specStatus =
+            typeof respecConfig !== "undefined" && respecConfig.specStatus
+                ? respecConfig.specStatus.toLowerCase()
+                : "";
+        if (!["def", "wv", "cv", "vv"].includes(specStatus)) return;
+
+        var lang =
+            document.documentElement && document.documentElement.lang
+                ? document.documentElement.lang.split("-")[0]
+                : "nl";
+        if (lang !== "nl") return;
+
+        var sotdSection = document.querySelector("#sotd");
+        if (!sotdSection || sotdSection.querySelector(".bro-sotd-note")) return;
+
+        var note = document.createElement("p");
+        note.className = "bro-sotd-note";
+
+        var label = document.createElement("strong");
+        label.textContent = "Let op:";
+        note.appendChild(label);
+        note.append(" De aanlever-, gebruiks- en terugmeldplicht als bedoeld in artikelen 9, 27 en 30 van de ");
+
+        var broLawLink = document.createElement("a");
+        broLawLink.href = "https://wetten.overheid.nl/BWBR0037095";
+        broLawLink.textContent = "Wet basisregistratie ondergrond (Bro)";
+        note.appendChild(broLawLink);
+        note.append(" gelden als deze catalogus is opgenomen in de ");
+
+        var broRegulationLink = document.createElement("a");
+        broRegulationLink.href = "https://wetten.overheid.nl/BWBR0040482";
+        broRegulationLink.textContent = "Regeling Bro";
+        note.appendChild(broRegulationLink);
+        note.append(".");
+
+        var paragraphs = sotdSection.querySelectorAll("p");
+        if (paragraphs.length) {
+            paragraphs[paragraphs.length - 1].insertAdjacentElement("afterend", note);
+            return;
+        }
+
+        var heading = sotdSection.querySelector("h2");
+        if (heading) {
+            heading.insertAdjacentElement("afterend", note);
+            return;
+        }
+
+        sotdSection.appendChild(note);
+    } catch (err) {
+        console.error("addBroSotdNotice error", err);
+    }
+}
+
 var organisationConfig = {
     nl_organisationName: "BRO",
     // werkt nog niet 
@@ -17,7 +72,7 @@ var organisationConfig = {
     },
 	    ],
 	
-	postProcess: [window.respecMermaid.createFigures],
+	postProcess: [window.respecMermaid.createFigures, addBroSotdNotice],
 
     // NB dit gaat ervan uit dat shortName = naam van de repository. Maar dit zal niet altijd het geval zijn. We kunnen edDraftURI ook nog steeds in de config.js opnemen.
 	// edDraftURI: ["https://broprogramma.github.io", "/", "shortName"],
@@ -119,10 +174,10 @@ var organisationConfig = {
     sotdText: {
         nl: {
             sotd: "Status van dit document",
-            def: `Dit is de definitieve versie van dit document. Wijzigingen naar aanleiding van consultaties zijn doorgevoerd. <p><strong>Let op:</strong> De aanlever-, gebruiks- en terugmeldplicht als bedoeld in artikelen 9, 27 en 30 van de <a href=\"https://wetten.overheid.nl/BWBR0037095\">Wet basisregistratie ondergrond (Bro)</a> gelden als deze catalogus is opgenomen in de <a href=\"https://wetten.overheid.nl/BWBR0040482\">Regeling Bro</a>.</p>`,
-            wv: `Dit is een werkversie die op elk moment kan worden gewijzigd, verwijderd of vervangen door andere documenten. Het is geen stabiel document. <p><strong>Let op:</strong> De aanlever-, gebruiks- en terugmeldplicht als bedoeld in artikelen 9, 27 en 30 van de <a href=\"https://wetten.overheid.nl/BWBR0037095\">Wet basisregistratie ondergrond (Bro)</a> gelden als deze catalogus is opgenomen in de <a href=\"https://wetten.overheid.nl/BWBR0040482\">Regeling Bro</a>.</p>`,
-            cv: `Dit is een consultatieversie. <p><strong>Let op:</strong> De aanlever-, gebruiks- en terugmeldplicht als bedoeld in artikelen 9, 27 en 30 van de <a href=\"https://wetten.overheid.nl/BWBR0037095\">Wet basisregistratie ondergrond (Bro)</a> gelden als deze catalogus is opgenomen in de <a href=\"https://wetten.overheid.nl/BWBR0040482\">Regeling Bro</a>.</p>`,
-            vv: `Dit is de definitieve conceptversie van dit document. Wijzigingen naar aanleiding van consultaties zijn doorgevoerd. <p><strong>Let op:</strong> De aanlever-, gebruiks- en terugmeldplicht als bedoeld in artikelen 9, 27 en 30 van de <a href=\"https://wetten.overheid.nl/BWBR0037095\">Wet basisregistratie ondergrond (Bro)</a> gelden als deze catalogus is opgenomen in de <a href=\"https://wetten.overheid.nl/BWBR0040482\">Regeling Bro</a>.</p>`,
+            def: `Dit is de definitieve versie van dit document. Wijzigingen naar aanleiding van consultaties zijn doorgevoerd.`,
+            wv: `Dit is een werkversie die op elk moment kan worden gewijzigd, verwijderd of vervangen door andere documenten. Het is geen stabiel document.`,
+            cv: `Dit is een consultatieversie.`,
+            vv: `Dit is de definitieve conceptversie van dit document. Wijzigingen naar aanleiding van consultaties zijn doorgevoerd.`,
             basis: "Dit is een document zonder officiële status.",
         },
         en: {
