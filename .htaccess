@@ -62,3 +62,10 @@ IndexOptions FancyIndexing FoldersFirst NameWidth=* DescriptionWidth=*
     Header set Cache-Control "no-cache, no-store, must-revalidate"
   </IfModule>
 </filesMatch>
+
+# Allow cross-origin fetch of Markdown files (used by ReSpec includes)
+<filesMatch "\.md$">
+  <IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+  </IfModule>
+</filesMatch>
