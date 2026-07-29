@@ -22,7 +22,7 @@ function addBroSotdNotice() {
         var label = document.createElement("strong");
         label.textContent = "Let op:";
         note.appendChild(label);
-        note.append(" De aanlever-, gebruiks-, terugmeld- en onderzoeksplicht als bedoeld in artikelen 9, 27, 30 en 33 van de");
+        note.append(" De aanlever-, gebruiks-, terugmeld- en onderzoeksplicht als bedoeld in artikelen 9, 27, 30 en 33 van de ");
 
         var broLawLink = document.createElement("a");
         broLawLink.href = "https://wetten.overheid.nl/BWBR0037095";
