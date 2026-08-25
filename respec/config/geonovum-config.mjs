@@ -1,15 +1,12 @@
-// Dit bestand is gepubliceerd als https://tools.geostandaarden.nl/respec/config/geonovum-config.js, voor hergebruik in Geonovum ReSpec documenten.
+// Dit bestand is gepubliceerd als https://tools.geostandaarden.nl/respec/config/geonovum-config.mjs, voor hergebruik in Geonovum ReSpec documenten.
 
-// mermaid.mjs/generateMermaidFigures plugin is intended for .mermaid files. Has negative side effects.
+// Mermaid Plugin niet overgenomen van Logius vanwege negatieve bijeffecten
+// mermaid.mjs/generateMermaidFigures plugin is intended for .mermaid files.
 // import { generateMermaidFigures } from "https://logius-standaarden.github.io/publicatie/respec/plugins/mermaid.mjs";
 
 var organisationConfig = {
   nl_organisationName: "Geonovum",
-  // ILaR: path naar bro/dso bestaat niet
   nl_organisationStylesURL: "https://tools.geostandaarden.nl/respec/style/",
-  // bv styles url voor ander GN publicatiedomein met eigen stijlen zoals DSO of BRO:
-  // nl_organisationStylesURL: "https://tools.geostandaarden.nl/respec/dso/style/",
-  // nl_organisationStylesURL: "https://tools.geostandaarden.nl/respec/bro/style/",
   nl_organisationPublishURL: "https://docs.geostandaarden.nl/",
   logos: [
     {
@@ -23,7 +20,7 @@ var organisationConfig = {
   ],
 
   // !important: order of mermaid figure handling
-  // mermaid.mjs/generateMermaidFigures plugin is intended for .mermaid files. Has negative side effects.
+  // mermaid.mjs/generateMermaidFigures plugin is intended for .mermaid files.
   postProcess: [window.respecMermaid.createFigures], //, generateMermaidFigures ],
 
   latestVersion: [
@@ -1183,17 +1180,6 @@ var organisationConfig = {
   }
 }
 
-
-// function prependSectionToBodyAndCreateIfNotExists(document, sectionId) {
-//   let section = document.getElementById(sectionId);
-//   if (section === null) {
-//     section = document.createElement('section');
-//     section.id = sectionId;
-//   }
-//   section.classList.add('introductory');
-//   document.body.prepend(section);
-// }
-
 function missingOrIsEmpty(items) {
   return items === undefined || items.length === 0;
 }
@@ -1233,100 +1219,6 @@ export function loadRespecWithConfiguration(localConfig) {
     ...localConfig.localBiblio,
   };
 
-  // respecConfig.preProcess = [
-  //   ...(localConfig.preProcess || []),
-  //   (config, document, utils) => {
-  //     // const ACCEPTED_DOMAINS = ['api', 'bomos', 'dk', 'digimelding', 'fsc', 'ftv', 'logboek', 'notificatieservices', 'st'];
-  //     // if (!ACCEPTED_DOMAINS.includes(config.pubDomain)) {
-  //     //   utils.showError(`Invalid pubDomain. Must be one of ${ACCEPTED_DOMAINS}, but was "${config.pubDomain}"`);
-  //     // }
-  //     if (!/^[a-z][a-z0-9]*(-[a-z0-9]+)*$/.test(config.shortName)) {
-  //       utils.showError(`Invalid shortName. Must be in kebab-case (only lowercase letters and potentially separated by dashes), but was "${config.shortName}"`);
-  //     }
-  //     // if (missingOrIsEmpty(config.github)) {
-  //     //   utils.showError('No github link specified in configuration.');
-  //     // }
-  //     if (missingOrIsEmpty(config.editors)) {
-  //       utils.showError('No editors specified in configuration.');
-  //     }
-  //     if (missingOrIsEmpty(config.authors)) {
-  //       utils.showError('No authors specified in configuration.');
-  //     }
-  //     // for (const person of [...(config.editors || []), ...(config.authors || [])]) {
-  //     //   if (!('companyURL' in person)) {
-  //     //     continue;
-  //     //   }
-  //     //   if (person.companyURL.includes("logius.nl") && person.companyURL !== "https://www.logius.nl") {
-  //     //     utils.showError(`companyURL of an editor/author of Logius must be "https://www.logius.nl", instead it was "${person.companyURL}"`);
-  //     //   }
-  //     //   if (person.companyURL.includes("github.com")) {
-  //     //     utils.showError(`companyURL of an editor/author must link to a website of an organisation (not GitHub), instead it was ${person.companyURL}`);
-  //     //   }
-  //     // }
-  //   } //,
-  //   // (config, document, utils) => {
-  //   //   if (config.specStatus.toLowerCase() !== 'cv') {
-  //   //     return;
-  //   //   }
-  //   //   let email;
-  //   //   let overleg;
-
-  //   //   if (['dk', 'fsc'].includes(config.pubDomain)) {
-  //   //     email = "digikoppeling@logius.nl";
-  //   //     overleg = "Digikoppeling";
-  //   //   } else if (config.pubDomain === "bomos") {
-  //   //     email = "bomos@logius.nl";
-  //   //     overleg = "BOMOS-klankbord";
-  //   //   } else {
-  //   //     email = "api@logius.nl";
-
-  //   //     if (config.pubDomain === "notificatieservices") {
-  //   //       overleg = "Notificeren";
-  //   //     } else if (config.pubDomain === "logboek") {
-  //   //       overleg = "LDV";
-  //   //     } else if (config.shortName.startsWith("oauth") || config.shortName === "oidc") {
-  //   //       overleg = "OAuth";
-  //   //     } else {
-  //   //       overleg = "API";
-  //   //     }
-  //   //   }
-
-  //   //   for (const texts of Object.values(config.sotdText)) {
-  //   //     texts.cv = texts.cv.replace(/\w+@logius\.nl/, email);
-  //   //   }
-  //   //   // Zodat het kan worden uitgelezen bij het aanmaken van de consultatie README
-  //   //   utils.amendConfiguration({
-  //   //     emailForConsultation: email,
-  //   //     technischOverleg: overleg,
-  //   //   });
-  //   // },
-  //   // (config, document) => {
-  //   //   // Secties worden toegevoegd in omgekeerde volgorde. Dus de
-  //   //   // sectie die hier als laatste staat, komt als eerste voor
-  //   //   // in het document.
-  //   //   prependSectionToBodyAndCreateIfNotExists(document, 'conformance');
-  //   //   prependSectionToBodyAndCreateIfNotExists(document, 'sotd');
-  //   // },
-  //   // (config, document, utils) => {
-  //   //   if (!config.alternateFormats) {
-  //   //     config.alternateFormats = [];
-  //   //   }
-  //   //   const pdfName = `${config.pubDomain}-${config.shortName}-${config.publishVersion}.pdf`;
-  //   //   const existingFormat = config.alternateFormats.find(format => format.label.toLowerCase() === 'pdf');
-  //   //   if (existingFormat) {
-  //   //     if (existingFormat.uri !== pdfName) {
-  //   //       utils.showError(`Invalid name for PDF format. Expected "${pdfName}", but got "${existingFormat.uri}".
-  //   //         Consider removing the PDF format from 'config.alternateFormats', as it is automatically generated already.`);
-  //   //     }
-  //   //     return;
-  //   //   }
-  //   //   config.alternateFormats.push({
-  //   //     label: 'PDF',
-  //   //     uri: pdfName,
-  //   //   });
-  //   // }
-  // ];
-
   respecConfig.postProcess = [
     ...(respecConfig.postProcess || []),
     // to fix mermaid 1.3.0 zero width
@@ -1343,37 +1235,12 @@ export function loadRespecWithConfiguration(localConfig) {
           img.onload = (e) => { 
             const imgEl = e.target; 
             if (imgEl.width == 0) { 
-            //if (imgEl.naturalWidth < imgEl.naturalHeight) {
-            //   imgEl.width = imgEl.naturalWidth;
-            //   imgEl.height = imgEl.naturalHeight;            
-            //} else {
               imgEl.width = imgEl.naturalWidth/3*2;
               imgEl.height = imgEl.naturalHeight/3*2;
-            //}
             }
           };
         }
       }
-    // },
-    // (config, document) => {
-    //   if (!config.spellcheck) {
-    //     return;
-    //   }
-    //   const removableElements = [
-    //     // Contains author and editor names that don't match any dictionary
-    //     document.querySelector('.head'),
-    //     // Contain name of standards and their authors, which don't match
-    //     // any dictionary
-    //     document.getElementById('references'),
-    //     ...document.getElementsByClassName('bibref'),
-    //     ...document.querySelectorAll('[data-cite]'),
-    //     // Any particular part of a standard that is custom and doesn't need
-    //     // checking, such as Dutch context in an English standard
-    //     ...document.getElementsByClassName('remove-for-spellcheck'),
-    //   ];
-    //   for (const element of removableElements) {
-    //     element?.remove();
-    //   }
     }
   ];
 
@@ -1384,5 +1251,4 @@ export function loadRespecWithConfiguration(localConfig) {
   // vanwege module is CORS nodig en adviseert Logius om onderstaande te gebruiken
   // zie ook https://github.com/Logius-standaarden/respec/issues/108
   import("https://logius-standaarden.github.io/publicatie/respec/builds/respec-nlgov.js");
-
 }
