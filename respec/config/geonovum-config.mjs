@@ -23,7 +23,7 @@ var organisationConfig = {
   // mermaid.mjs/generateMermaidFigures plugin is intended for .mermaid files.
   postProcess: [window.respecMermaid.createFigures,
     localizeGitHubHeaderLinks,
-    solveMermaidZeroWidth], //, generateMermaidFigures ],
+    solveMermaidDeficiencies], //, generateMermaidFigures ],
 
   latestVersion: [
     "nl_organisationPublishURL",
@@ -1186,15 +1186,19 @@ function missingOrIsEmpty(items) {
   return items === undefined || items.length === 0;
 }
 
-function solveMermaidZeroWidth(_config, document) {
+function solveMermaidDeficiencies(_config, document) {
   // to fix mermaid 1.3.0 zero width
   // #issue mermaid missing alt text        
   const mermaidImages = document.querySelectorAll('figure pre img');
   for (const img of mermaidImages) {
+    if (img.alt == null) {
+        result = img.parentElement.parentElement.querySelector("figcaption span");
+        img.alt = img.parentElement.parentElement.querySelector("figcaption span")??"--";
+    }
+
     if (img.naturalWidth > 0 && img.width == 0) {
       img.style = null;
       img.classList.add("mermaid");
-      img.alt = img.alt??"" + (img.parentElement.parentElement.querySelector("figcaption span")??"");
       //img.width = img.naturalWidth; ///3*2;
       //img.height = img.naturalHeight; ///3*2;
     }
