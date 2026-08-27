@@ -1187,21 +1187,17 @@ function missingOrIsEmpty(items) {
 }
 
 function solveMermaidDeficiencies(_config, document) {
-  // to fix mermaid 1.3.0 zero width/height
-  // #issue mermaid missing alt text        
   const mermaidImages = document.querySelectorAll('figure pre img');
-  for (const img of mermaidImages) {
+  for (const img of mermaidImages) {    
+    // missing alt text      
     if (img.alt == null || img.alt == "") {
-        var pre = img.parentElement;
-        if (pre !== null) {
-          var figure = pre.parentElement;
-          if (figure !== null) {
-            var alttext = figure.querySelector("figcaption span");
-            img.alt = alttext;
-          }
+      var figtext = img.parentElement.parentElement.querySelector("figcaption span");
+      if (figtext !== null) {
+          img.alt = figtext.innerText;
       }
     }
 
+    // to fix mermaid 1.3.0 zero width/height  
     if (img.naturalWidth > 0 && img.width == 0) {
       img.style = null;
       img.classList.add("mermaid");
@@ -1213,8 +1209,10 @@ function solveMermaidDeficiencies(_config, document) {
       img.onload = (e) => { 
         const imgEl = e.target; 
         if (imgEl.width == 0) { 
-          imgEl.width = imgEl.naturalWidth; ///3*2;
-          imgEl.height = imgEl.naturalHeight; ///3*2;
+          imgEl.style = null;
+          imgEl.classList.add("mermaid");
+          //imgEl.width = imgEl.naturalWidth; ///3*2;
+          //imgEl.height = imgEl.naturalHeight; ///3*2;
         }
       };
     }
