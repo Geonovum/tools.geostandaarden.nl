@@ -1194,7 +1194,7 @@ function solveMermaidZeroWidth(_config, document) {
     if (img.naturalWidth > 0 && img.width == 0) {
       img.style = null;
       img.classList.add("mermaid");
-      img.alt = img.alt??"" + (img.parentElement.parentElement.querySelector("figure-caption span")??"");
+      img.alt = img.alt??"" + (img.parentElement.parentElement.querySelector("figcaption span")??"");
       //img.width = img.naturalWidth; ///3*2;
       //img.height = img.naturalHeight; ///3*2;
     }
