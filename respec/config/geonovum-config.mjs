@@ -1191,7 +1191,7 @@ function solveMermaidDeficiencies(_config, document) {
   // #issue mermaid missing alt text        
   const mermaidImages = document.querySelectorAll('figure pre img');
   for (const img of mermaidImages) {
-    if (img.alt == null) {
+    if (img.alt == null || img.alt == "") {
         result = img.parentElement.parentElement.querySelector("figcaption span");
         img.alt = img.parentElement.parentElement.querySelector("figcaption span")??"--";
     }
