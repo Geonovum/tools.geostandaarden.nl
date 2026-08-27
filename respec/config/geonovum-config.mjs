@@ -1187,14 +1187,19 @@ function missingOrIsEmpty(items) {
 }
 
 function solveMermaidDeficiencies(_config, document) {
-  // to fix mermaid 1.3.0 zero width
+  // to fix mermaid 1.3.0 zero width/height
   // #issue mermaid missing alt text        
   const mermaidImages = document.querySelectorAll('figure pre img');
   for (const img of mermaidImages) {
     if (img.alt == null || img.alt == "") {
-        figure = img.parentNode.parentNode; // pre no element?
-        alttext = figure.querySelector("figcaption span");
-        img.alt = img.parentNode.parentNode.querySelector("figcaption span")??"--";
+        pre = img.parentNode;
+        if (pre !== null) {
+          figure = pre.parentNode; // pre no element?
+          if (figure !== null) {
+            alttext = figure.querySelector("figcaption span");
+            img.alt = alttext;
+          }
+      }
     }
 
     if (img.naturalWidth > 0 && img.width == 0) {
