@@ -1192,8 +1192,9 @@ function solveMermaidDeficiencies(_config, document) {
   const mermaidImages = document.querySelectorAll('figure pre img');
   for (const img of mermaidImages) {
     if (img.alt == null || img.alt == "") {
-        result = img.parentElement.parentElement.querySelector("figcaption span");
-        img.alt = img.parentElement.parentElement.querySelector("figcaption span")??"--";
+        figure = img.parentNode.parentNode; // pre no element?
+        alttext = figure.querySelector("figcaption span");
+        img.alt = img.parentNode.parentNode.querySelector("figcaption span")??"--";
     }
 
     if (img.naturalWidth > 0 && img.width == 0) {
