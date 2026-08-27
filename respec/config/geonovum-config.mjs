@@ -21,7 +21,9 @@ var organisationConfig = {
 
   // !important: order of mermaid figure handling
   // mermaid.mjs/generateMermaidFigures plugin is intended for .mermaid files.
-  postProcess: [window.respecMermaid.createFigures], //, generateMermaidFigures ],
+  postProcess: [window.respecMermaid.createFigures,
+    localizeGitHubHeaderLinks,
+    solveMermaidZeroWidth], //, generateMermaidFigures ],
 
   latestVersion: [
     "nl_organisationPublishURL",
@@ -1184,6 +1186,41 @@ function missingOrIsEmpty(items) {
   return items === undefined || items.length === 0;
 }
 
+function solveMermaidZeroWidth(_config, document) {
+  // to fix mermaid 1.3.0 zero width
+  // #issue mermaid missing alt text        
+  const mermaidImages = document.querySelectorAll('figure pre img');
+  for (const img of mermaidImages) {
+    if (img.naturalWidth > 0 && img.width == 0) {
+        img.width = img.naturalWidth/3*2;
+        img.height = img.naturalHeight/3*2;
+    }
+    else {
+      // Handle image load success
+      img.onload = (e) => { 
+        const imgEl = e.target; 
+        if (imgEl.width == 0) { 
+          imgEl.width = imgEl.naturalWidth/3*2;
+          imgEl.height = imgEl.naturalHeight/3*2;
+        }
+      };
+    }
+  }
+}
+
+function localizeGitHubHeaderLinks(_config, document) {
+  if (document.documentElement.lang !== "nl") {
+    return;
+  }
+
+  const issueLink = document.querySelector(
+    '.head dl a[href$="/issues/"], .head dl a[href$="/issues"]'
+  );
+  if (issueLink) {
+    issueLink.textContent = "Alle issues";
+  }
+}
+
 /**
  * Laad Respec met een `localConfig`, waarbij default waarden uit een
  * `organisationConfig` object komen. Tevens worden de `localBiblio`
@@ -1221,27 +1258,6 @@ export function loadRespecWithConfiguration(localConfig) {
 
   respecConfig.postProcess = [
     ...(respecConfig.postProcess || []),
-    // to fix mermaid 1.3.0 zero width
-    // #issue mermaid missing alt text        
-    (config, document) => {
-      const mermaidImages = document.querySelectorAll('figure pre img');
-      for (const img of mermaidImages) {
-        if (img.naturalWidth > 0 && img.width == 0) {
-            img.width = img.naturalWidth/3*2;
-            img.height = img.naturalHeight/3*2;
-        }
-        else {
-          // Handle image load success
-          img.onload = (e) => { 
-            const imgEl = e.target; 
-            if (imgEl.width == 0) { 
-              imgEl.width = imgEl.naturalWidth/3*2;
-              imgEl.height = imgEl.naturalHeight/3*2;
-            }
-          };
-        }
-      }
-    }
   ];
 
    document.title = respecConfig.title;
