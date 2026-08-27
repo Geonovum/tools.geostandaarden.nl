@@ -21,7 +21,7 @@ var organisationConfig = {
 
   // !important: order of mermaid figure handling
   // mermaid.mjs/generateMermaidFigures plugin is intended for .mermaid files.
-  postProcess: [interceptCreateMermaid,
+  postProcess: [window.respecMermaid.createFigures,
     localizeGitHubHeaderLinks,
     solveMermaidZeroWidth], //, generateMermaidFigures ],
 
@@ -1206,10 +1206,6 @@ function solveMermaidZeroWidth(_config, document) {
       };
     }
   }
-}
-
-function interceptCreateMermaid(_config, document) {
-  window.respecMermaid.createFigures(_config, document);
 }
 
 function localizeGitHubHeaderLinks(_config, document) {
