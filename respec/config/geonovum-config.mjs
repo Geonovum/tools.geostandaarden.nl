@@ -1192,11 +1192,11 @@ function solveMermaidDeficiencies(_config, document) {
   const mermaidImages = document.querySelectorAll('figure pre img');
   for (const img of mermaidImages) {
     if (img.alt == null || img.alt == "") {
-        pre = img.parentNode;
+        var pre = img.parentElement;
         if (pre !== null) {
-          figure = pre.parentNode; // pre no element?
+          var figure = pre.parentElement;
           if (figure !== null) {
-            alttext = figure.querySelector("figcaption span");
+            var alttext = figure.querySelector("figcaption span");
             img.alt = alttext;
           }
       }
