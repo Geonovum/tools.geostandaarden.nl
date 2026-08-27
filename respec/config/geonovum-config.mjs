@@ -1192,16 +1192,16 @@ function solveMermaidZeroWidth(_config, document) {
   const mermaidImages = document.querySelectorAll('figure pre img');
   for (const img of mermaidImages) {
     if (img.naturalWidth > 0 && img.width == 0) {
-        img.width = img.naturalWidth/3*2;
-        img.height = img.naturalHeight/3*2;
+        img.width = img.naturalWidth; ///3*2;
+        img.height = img.naturalHeight; ///3*2;
     }
     else {
       // Handle image load success
       img.onload = (e) => { 
         const imgEl = e.target; 
         if (imgEl.width == 0) { 
-          imgEl.width = imgEl.naturalWidth/3*2;
-          imgEl.height = imgEl.naturalHeight/3*2;
+          imgEl.width = imgEl.naturalWidth; ///3*2;
+          imgEl.height = imgEl.naturalHeight; ///3*2;
         }
       };
     }
