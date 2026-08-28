@@ -18,7 +18,11 @@ var organisationConfig = {
     }
   ],
 
-  postProcess: [window.respecMermaid.createFigures],
+  postProcess: [
+    window.respecMermaid.createFigures,
+    localizeGitHubHeaderLinks,
+    solveMermaidDeficiencies,
+  ],
 
   latestVersion: [
     "nl_organisationPublishURL",
@@ -1174,5 +1178,45 @@ var organisationConfig = {
       date: "2008-03-14",
       id: "WMCC11",
     }
+  }
+}
+
+function solveMermaidDeficiencies(_config, document) {
+  const mermaidImages = document.querySelectorAll("figure pre img");
+  for (const img of mermaidImages) {
+    if (img.alt == null || img.alt === "") {
+      const caption = img.parentElement.parentElement.querySelector(
+        "figcaption span"
+      );
+      if (caption !== null) {
+        img.alt = caption.innerText;
+      }
+    }
+
+    if (img.naturalWidth > 0 && img.width === 0) {
+      img.style = null;
+      img.classList.add("mermaid");
+    } else {
+      img.onload = (event) => {
+        const loadedImage = event.target;
+        if (loadedImage.width === 0) {
+          loadedImage.style = null;
+          loadedImage.classList.add("mermaid");
+        }
+      };
+    }
+  }
+}
+
+function localizeGitHubHeaderLinks(_config, document) {
+  if (document.documentElement.lang !== "nl") {
+    return;
+  }
+
+  const issueLink = document.querySelector(
+    '.head dl a[href$="/issues/"], .head dl a[href$="/issues"]'
+  );
+  if (issueLink) {
+    issueLink.textContent = "Alle issues";
   }
 }

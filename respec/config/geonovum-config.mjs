@@ -1267,6 +1267,11 @@ export function loadRespecWithConfiguration(localConfig) {
     ...localConfig.localBiblio,
   };
 
+  respecConfig.postProcess = [
+    ...organisationConfig.postProcess,
+    ...(localConfig.postProcess ?? []),
+  ];
+
    document.title = respecConfig.title;
 
    globalThis.respecConfig = respecConfig;
