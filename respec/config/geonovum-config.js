@@ -18,7 +18,8 @@ var organisationConfig = {
     }
   ],
 
-  postProcess: [window.respecMermaid.createFigures],
+  postProcess: [window.respecMermaid.createFigures,
+    localizeGitHubHeaderLinks],
 
   latestVersion: [
     "nl_organisationPublishURL",
@@ -1174,5 +1175,18 @@ var organisationConfig = {
       date: "2008-03-14",
       id: "WMCC11",
     }
+  }
+}
+
+function localizeGitHubHeaderLinks(_config, document) {
+  if (document.documentElement.lang !== "nl") {
+    return;
+  }
+
+  const issueLink = document.querySelector(
+    '.head dl a[href$="/issues/"], .head dl a[href$="/issues"]'
+  );
+  if (issueLink) {
+    issueLink.textContent = "Alle issues";
   }
 }
