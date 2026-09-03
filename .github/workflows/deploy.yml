@@ -20,6 +20,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Test ReSpec organisation configuration
+        run: node --experimental-vm-modules --test .github/tests/geonovum-config.test.mjs
+
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh

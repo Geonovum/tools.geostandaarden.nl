@@ -18,8 +18,11 @@ var organisationConfig = {
     }
   ],
 
-  postProcess: [window.respecMermaid.createFigures,
-    localizeGitHubHeaderLinks],
+  postProcess: [
+    window.respecMermaid.createFigures,
+    localizeGitHubHeaderLinks,
+    solveMermaidDeficiencies,
+  ],
 
   latestVersion: [
     "nl_organisationPublishURL",
@@ -1174,6 +1177,35 @@ var organisationConfig = {
       editors: "T. Kralidis",
       date: "2008-03-14",
       id: "WMCC11",
+    }
+  }
+}
+
+function solveMermaidDeficiencies(_config, document) {
+  const mermaidImages = document.querySelectorAll(
+    'figure img[src^="data:image/svg+xml"]'
+  );
+  for (const img of mermaidImages) {
+    if (img.alt == null || img.alt === "") {
+      const caption = img.closest("figure")?.querySelector("figcaption");
+      const title = caption?.querySelector(".fig-title") ?? caption;
+      const altText = title?.textContent.trim() ?? "";
+      if (altText !== "") {
+        img.alt = altText;
+      }
+    }
+
+    if (img.naturalWidth > 0 && img.width === 0) {
+      img.style = null;
+      img.classList.add("mermaid");
+    } else {
+      img.onload = (event) => {
+        const loadedImage = event.target;
+        if (loadedImage.width === 0) {
+          loadedImage.style = null;
+          loadedImage.classList.add("mermaid");
+        }
+      };
     }
   }
 }
