@@ -28,26 +28,73 @@ test("classic config owns the generic Mermaid and Geonovum postprocessors", asyn
     querySelector: () => issueLink,
   });
   assert.equal(issueLink.textContent, "Alle issues");
+});
 
-  const classes = [];
-  const mermaidImage = {
-    alt: "",
-    classList: { add: (className) => classes.push(className) },
-    naturalWidth: 640,
-    parentElement: {
-      parentElement: {
-        querySelector: () => ({ innerText: "Gegevensstroom" }),
+test("Mermaid postprocessor handles direct and nested data SVG images", async () => {
+  const context = vm.createContext({
+    window: {
+      respecMermaid: {
+        createFigures: () => {},
       },
     },
+  });
+
+  vm.runInContext(await readFile(classicConfigUrl, "utf8"), context);
+  const processors = vm.runInContext("organisationConfig.postProcess", context);
+
+  const directClasses = [];
+  const directCaption = {
+    querySelector: (selector) =>
+      selector === ".fig-title"
+        ? { textContent: "  Directe gegevensstroom  " }
+        : null,
+    textContent: "Figuur 1 Directe gegevensstroom",
+  };
+  const directImage = {
+    alt: "",
+    classList: { add: (className) => directClasses.push(className) },
+    closest: (selector) =>
+      selector === "figure"
+        ? { querySelector: () => directCaption }
+        : null,
+    naturalWidth: 640,
     style: "width: 0",
     width: 0,
   };
+
+  const nestedClasses = [];
+  const nestedCaption = {
+    querySelector: () => null,
+    textContent: "  Geneste gegevensstroom  ",
+  };
+  const nestedImage = {
+    alt: "",
+    classList: { add: (className) => nestedClasses.push(className) },
+    closest: (selector) =>
+      selector === "figure"
+        ? { querySelector: () => nestedCaption }
+        : null,
+    naturalWidth: 0,
+    style: "width: 0",
+    width: 0,
+  };
+
   processors[2](null, {
-    querySelectorAll: () => [mermaidImage],
+    querySelectorAll: (selector) =>
+      selector === 'figure img[src^="data:image/svg+xml"]'
+        ? [directImage, nestedImage]
+        : [],
   });
-  assert.equal(mermaidImage.alt, "Gegevensstroom");
-  assert.equal(mermaidImage.style, null);
-  assert.deepEqual(classes, ["mermaid"]);
+
+  assert.equal(directImage.alt, "Directe gegevensstroom");
+  assert.equal(directImage.style, null);
+  assert.deepEqual(directClasses, ["mermaid"]);
+
+  assert.equal(nestedImage.alt, "Geneste gegevensstroom");
+  assert.equal(typeof nestedImage.onload, "function");
+  nestedImage.onload({ target: nestedImage });
+  assert.equal(nestedImage.style, null);
+  assert.deepEqual(nestedClasses, ["mermaid"]);
 });
 
 test("module config preserves organisation postprocessors when local processors exist", async () => {
