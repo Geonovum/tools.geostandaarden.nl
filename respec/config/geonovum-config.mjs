@@ -1280,5 +1280,7 @@ export function loadRespecWithConfiguration(localConfig) {
 
   // vanwege module is CORS nodig en adviseert Logius om onderstaande te gebruiken
   // zie ook https://github.com/Logius-standaarden/respec/issues/108
-  import("https://logius-standaarden.github.io/publicatie/respec/builds/respec-nlgov.js");
+  //import("https://logius-standaarden.github.io/publicatie/respec/builds/respec-nlgov.js");
+  // https://zoot-inge.github.io/respec/
+  import("https://github.com/zoot-inge/respec/blob/develop/builds/respec-nlgov.js");
 }
