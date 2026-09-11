@@ -70,8 +70,8 @@ var organisationConfig = {
       def: "Recommendation",
       ld: "Living document",
       basis: "Document",
-      //eo: "Outdated version",
-      //tg: "Rescinded version",
+      eo: "Outdated version",
+      tg: "Rescinded version",
       no: "Norm",
       st: "Standard",
       im: "Information model",
@@ -89,8 +89,8 @@ var organisationConfig = {
       def: "Vastgestelde versie",
       ld: "Levend document",
       basis: "Document",
-      //eo: "Verouderde versie",
-      //tg: "Teruggetrokken versie",
+      eo: "Verouderde versie",
+      tg: "Teruggetrokken versie",
       no: "Norm",
       st: "Standaard",
       im: "Informatiemodel",
@@ -112,6 +112,8 @@ var organisationConfig = {
       vv: `Dit is de definitieve conceptversie van dit document. Wijzigingen naar aanleiding van consultaties zijn doorgevoerd.`,
       basis: "Dit is een document zonder officiële status.",
       ld: "Dit is een levend document dat regelmatig gewijzigd wordt.",
+      eo: "Dit is een verouderde versie.",
+      tg: "Dit is een teruggetrokken versie.",
     },
     en: {
       sotd: "Status of this document",
@@ -121,6 +123,8 @@ var organisationConfig = {
       vv: `This is the final draft of this document. Edits resulting from consultations have been applied.`,
       basis: "This document has no official standing.",
       ld: "This is a living document, which is updated regularly.",
+      eo: "This is an outdated version.",
+      tg: "This is a rescinded version.",
     },
   },
 
@@ -131,6 +135,8 @@ var organisationConfig = {
     vv: "#045D9F",
     basis: "#80CC28",
     ld: "#80CC28",
+    eo: "#444",
+    tg: "#222",
   },
 
   licenses: {
@@ -1262,6 +1268,7 @@ export function loadRespecWithConfiguration(localConfig) {
     ...localConfig,
   };
 
+  // TODO: more deepMerge?
   respecConfig.localBiblio = {
     ...organisationConfig.localBiblio,
     ...localConfig.localBiblio,
