@@ -862,7 +862,7 @@ var organisationConfig = {
     },
     NEN3610: {
       title:
-        "NEN 3610:2022 nl - BBasismodel geo-informatie - Termen, definities, relaties en algemene regels voor de uitwisseling van informatie over aan de aarde gerelateerde ruimtelijke objecten",
+        "NEN 3610:2022 nl - Basismodel geo-informatie - Termen, definities, relaties en algemene regels voor de uitwisseling van informatie over aan de aarde gerelateerde ruimtelijke objecten",
       href: "https://www.nen.nl/nen-3610-2022-nl-296137",
       status: "Definitief",
       publisher: "NEN",
