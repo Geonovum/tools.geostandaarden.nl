@@ -926,7 +926,7 @@ var organisationConfig = {
     },
     "NL-SBB-20241010": {
       title:
-        "NNL-SBB - Standaard voor het beschrijven van begrippen",
+        "NL-SBB - Standaard voor het beschrijven van begrippen",
       href: "https://docs.geostandaarden.nl/nl-sbb/def-st-nl-sbb-20241010/",
       status: "Vastgestelde versie",
       publisher: "Geonovum",
