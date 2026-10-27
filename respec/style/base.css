@@ -1431,6 +1431,27 @@ table.index th:first-child a {
   font-weight: bold;
 }
 
+/**************************************************************************/
+/* 20261027 tbv noten in de tekst vanuit domein overgenomen met max-width */
+/**************************************************************************/
+span.noot {
+  background-color: #FEF6BB;
+} 
+span.noot span.noottekst {
+  display: block;
+  max-width: 600px;
+  margin: 7px;
+  padding: 7px;
+  position: absolute;
+  border: 1px solid #DCA;
+  background-color: #FEF6BB;
+  visibility: hidden;
+}
+span.noot:hover span.noottekst {
+  visibility: visible;
+  z-index: 1;
+}
+
 /******************************************************************************/
 /*                                    Print                                   */
 /******************************************************************************/
