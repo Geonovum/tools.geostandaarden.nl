@@ -7,14 +7,14 @@
     <prevVersion class="code">["nl_organisationPublishURL", "pubDomain", "/", "shortName", "-", "previousPublishDate"]</prevVersion>
     <logos>
       <item>
-        <src>https://tools.geostandaarden.nl/publication/domain/dcat/Geonovum.svg</src>
+        <src>https://docs.geostandaarden.nl/media/Geonovum.svg</src>
         <alt>Geonovum</alt>
         <id>geonovum</id>
         <height>67</height>
         <width>132</width>
         <url>https://www.geonovum.nl/geo-standaarden</url>
         <!-- ico-versie t.b.v. browser-tab -->
-        <ico>https://tools.geostandaarden.nl/publication/domain/dcat/Geonovum.ico</ico>
+        <ico>https://docs.geostandaarden.nl/media/Geonovum.ico</ico>
       </item>
     </logos>
     <useLogo class="code">true</useLogo>

@@ -105,13 +105,13 @@ var organisationConfig = {
   ],
   logos: [
     {
-      src: "https://tools.geostandaarden.nl/publication/domain/bag/Geonovum.svg",
+      src: "https://docs.geostandaarden.nl/media/Geonovum.svg",
       alt: "Geonovum",
       id: "geonovum",
       height: "67",
       width: "132",
       url: "https://www.geonovum.nl/geo-standaarden",
-      ico: "https://tools.geostandaarden.nl/publication/domain/bag/Geonovum.ico",
+      ico: "https://docs.geostandaarden.nl/media/Geonovum.ico",
     },
   ],
   useLogo: true,

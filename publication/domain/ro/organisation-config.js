@@ -111,7 +111,7 @@ var organisationConfig = {
       height: "67",
       width: "132",
       url: "https://www.geonovum.nl/geo-standaarden",
-      ico: "https://tools.geostandaarden.nl/publication/domain/ro/Geonovum.ico",
+      ico: "https://docs.geostandaarden.nl/media/Geonovum.ico",
     },
   ],
   useLogo: true,

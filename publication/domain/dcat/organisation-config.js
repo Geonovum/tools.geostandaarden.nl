@@ -67,25 +67,25 @@ var organisationConfig = {
       short: "CC0",
       url: "https://creativecommons.org/publicdomain/zero/1.0/",
       image:
-        "https://tools.geostandaarden.nl/publication/organisation/geonovum/cc-zero.svg",
+        "https://docs.geostandaarden.nl/media/cc-zero.svg",
     },
     "cc-by": {
       name: "Creative Commons Attribution 4.0 International Public License",
       short: "CC-BY",
       url: "https://creativecommons.org/licenses/by/4.0/legalcode",
       image:
-        "https://tools.geostandaarden.nl/publication/organisation/geonovum/cc-by.svg",
+        "https://docs.geostandaarden.nl/media/cc-by.svg",
     },
     "cc-by-nd": {
       name: "Creative Commons Naamsvermelding-GeenAfgeleideWerken 4.0 Internationaal",
       short: "CC-BY-ND",
       url: "https://creativecommons.org/licenses/by-nd/4.0/legalcode.nl",
       image:
-        "https://tools.geostandaarden.nl/publication/organisation/geonovum/cc-by-nd.svg",
+        "https://docs.geostandaarden.nl/media/cc-by-nd.svg",
     },
   },
   nl_organisationStylesURL:
-    "https://tools.geostandaarden.nl/publication/domain/dcat/",
+    "https://tools.geostandaarden.nl/publication/domain/dcat/", // base.css bestaat niet
   latestVersion: ["nl_organisationPublishURL", "pubDomain", "/", "shortName"],
   thisVersion: [
     "nl_organisationPublishURL",
@@ -105,13 +105,13 @@ var organisationConfig = {
   ],
   logos: [
     {
-      src: "https://tools.geostandaarden.nl/publication/domain/dcat/Geonovum.svg",
+      src: "https://docs.geostandaarden.nl/media/Geonovum.svg",
       alt: "Geonovum",
       id: "geonovum",
       height: "67",
       width: "132",
       url: "https://www.geonovum.nl/geo-standaarden",
-      ico: "https://tools.geostandaarden.nl/publication/domain/dcat/Geonovum.ico",
+      ico: "https://docs.geostandaarden.nl/media/Geonovum.ico",
     },
   ],
   useLogo: true,

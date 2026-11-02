@@ -74,19 +74,19 @@
         <name>Creative Commons 0 Public Domain Dedication</name>
         <short>CC0</short>
         <url>https://creativecommons.org/publicdomain/zero/1.0/</url>
-        <image>https://tools.geostandaarden.nl/publication/organisation/geonovum/cc-zero.svg</image>
+        <image>https://docs.geostandaarden.nl/media/cc-zero.svg</image>
       </item>
       <item name="cc-by">
         <name>Creative Commons Attribution 4.0 International Public License</name>
         <short>CC-BY</short>
         <url>https://creativecommons.org/licenses/by/4.0/legalcode</url>
-        <image>https://tools.geostandaarden.nl/publication/organisation/geonovum/cc-by.svg</image>
+        <image>https://docs.geostandaarden.nl/media/cc-by.svg</image>
       </item>
       <item name="cc-by-nd">
         <name>Creative Commons Naamsvermelding-GeenAfgeleideWerken 4.0 Internationaal</name>
         <short>CC-BY-ND</short>
         <url>https://creativecommons.org/licenses/by-nd/4.0/legalcode.nl</url>
-        <image>https://tools.geostandaarden.nl/publication/organisation/geonovum/cc-by-nd.svg</image>
+        <image>https://docs.geostandaarden.nl/media/cc-by-nd.svg</image>
       </item>
     </licenses>
     <localizationStrings>

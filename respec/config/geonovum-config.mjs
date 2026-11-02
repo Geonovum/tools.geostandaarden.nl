@@ -1238,6 +1238,22 @@ function localizeGitHubHeaderLinks(_config, document) {
   }
 }
 
+export function deepMergeWithSpread(obj1, obj2) {
+  const result = { ...obj1 };
+
+  for (let key in obj2) {
+    if (obj2.hasOwnProperty(key)) {
+      if (obj2[key] instanceof Object && obj1[key] instanceof Object) {
+        result[key] = deepMergeWithSpread(obj1[key], obj2[key]);
+      } else {
+        result[key] = obj2[key];
+      }
+    }
+  }
+
+  return result;
+}
+
 /**
  * Laad Respec met een `localConfig`, waarbij default waarden uit een
  * `organisationConfig` object komen. Tevens worden de `localBiblio`
@@ -1280,7 +1296,7 @@ export function loadRespecWithConfiguration(localConfig) {
 
   // vanwege module is CORS nodig en adviseert Logius om onderstaande te gebruiken
   // zie ook https://github.com/Logius-standaarden/respec/issues/108
-  //import("https://logius-standaarden.github.io/publicatie/respec/builds/respec-nlgov.js");
-  // https://zoot-inge.github.io/respec/
-  import("https://zoot-inge.github.io/respec/builds/respec-nlgov.js");
+  import("https://logius-standaarden.github.io/publicatie/respec/builds/respec-nlgov.js");
+  // fork van respec om fixes te testen 
+  // import("https://zoot-inge.github.io/respec/builds/respec-nlgov.js");
 }
